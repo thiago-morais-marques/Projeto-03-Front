@@ -1,0 +1,8 @@
+.background {
+    position: fixed;
+    z-index: -1;
+    background-image: url(../images/background.jpg) !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}

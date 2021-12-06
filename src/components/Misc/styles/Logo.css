@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "custom";
+    src: url(../fonts/Cyberdyne-5Z48.otf);
+}
+
+.logo {
+    font-family: "custom" !important;
+    color: #063970 !important;
+    font-size: 2rem !important;
+}
+
+.logo-link {    
+    text-decoration: none !important;
+}
