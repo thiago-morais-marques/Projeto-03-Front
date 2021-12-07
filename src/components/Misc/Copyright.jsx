@@ -1,7 +1,6 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import { linksUrl } from './global/globalVariables';
+import { Typography, Link } from '@mui/material';
+import linksUrl from './global/links';
 
 const Copyright = () => {
   return (
@@ -10,16 +9,16 @@ const Copyright = () => {
       color="text.secondary"
       align="center"
     >
-      {'Copyright © '}
+      {'© '}
       <Link
         color="inherit"
         href={linksUrl.home}
       >
         Iron Blogger
       </Link>
-      {' '}
+      {', '}
       {new Date().getFullYear()}
-      .
+      , todos os direitos reservados.
     </Typography>
   );
 };

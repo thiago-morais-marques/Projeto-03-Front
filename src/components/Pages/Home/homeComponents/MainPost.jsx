@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Paper from '@mui/material/Paper';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
-import Box from '@mui/material/Box';
+import {
+  Paper, Typography, Grid, Link, Box,
+} from '@mui/material';
+import linksUrl from '../../../Misc/global/links';
 
 const MainPost = (props) => {
   const { post } = props;
+  console.log(post);
 
+  const decodedImage = `data:image/png;base64,${post.imageURL}`;
   return (
     <Paper
       sx={{
@@ -19,10 +20,10 @@ const MainPost = (props) => {
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        backgroundImage: `url${post.image}`,
+        backgroundImage: `url(${decodedImage})`,
       }}
     >
-      <img style={{ display: 'none' }} src={post.image} alt={post.title} />
+      <img style={{ display: 'none' }} src={decodedImage} alt={post.title} />
       <Box
         sx={{
           position: 'absolute',
@@ -48,7 +49,7 @@ const MainPost = (props) => {
             <Typography variant="h5" color="inherit" paragraph>
               {post.description}
             </Typography>
-            <Link variant="subtitle1" href="#">
+            <Link variant="subtitle1" href={linksUrl.home}>
               Continue lendo…
             </Link>
           </Box>
@@ -60,11 +61,9 @@ const MainPost = (props) => {
 
 MainPost.propTypes = {
   post: PropTypes.shape({
-    description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    imageText: PropTypes.string.isRequired,
-    linkText: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    imageURL: PropTypes.string.isRequired,
   }).isRequired,
 };
 

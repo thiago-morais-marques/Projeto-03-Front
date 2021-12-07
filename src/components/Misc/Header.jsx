@@ -1,16 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
+import {
+  Toolbar, Button, /* IconButton, */ TextField, Box, Typography, Link,
+} from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import { linksUrl } from './global/globalVariables';
+import linksUrl from './global/links';
+import sections from './global/sections';
 import './styles/Logo.css';
 
 const Header = (props) => {
-  const { sections, logo } = props;
+  const { logo } = props;
 
   return (
     <>
@@ -21,7 +20,30 @@ const Header = (props) => {
           bgcolor: 'background.paper',
         }}
       >
-        <Button size="small">Subscribe</Button>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'flex-end',
+            mb: 1,
+          }}
+        >
+          <SearchIcon
+            sx={{
+              color: 'action.active',
+              mr: 1,
+              my: 0.5,
+            }}
+          />
+          <TextField
+            id="search-bar"
+            type="search"
+            placeholder="Pesquisar"
+            variant="standard"
+            InputLabelProps={{
+              shrink: false,
+            }}
+          />
+        </Box>
         <Typography
           className="logo"
           component="h2"
@@ -38,11 +60,23 @@ const Header = (props) => {
             {logo}
           </Link>
         </Typography>
-        <IconButton>
-          <SearchIcon />
-        </IconButton>
-        <Button variant="outlined" size="small">
-          Sign up
+        <Button
+          variant="outlined"
+          size="small"
+          sx={{
+            ml: 8,
+          }}
+        >
+          Login
+        </Button>
+        <Button
+          variant="outlined"
+          size="small"
+          sx={{
+            ml: 1,
+          }}
+        >
+          SignUp
         </Button>
       </Toolbar>
       <Toolbar
@@ -76,12 +110,6 @@ const Header = (props) => {
 };
 
 Header.propTypes = {
-  sections: PropTypes.arrayOf(
-    PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
   logo: PropTypes.string.isRequired,
 };
 
