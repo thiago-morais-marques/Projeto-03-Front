@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Toolbar from '@mui/material/Toolbar';
@@ -8,6 +9,7 @@ import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import { linksUrl } from './global/globalVariables';
 import './styles/Logo.css';
+
 
 const Header = (props) => {
   const { sections, logo } = props;
@@ -41,9 +43,9 @@ const Header = (props) => {
         <IconButton>
           <SearchIcon />
         </IconButton>
-        <Button variant="outlined" size="small">
-          Sign up
-        </Button>
+            <Button variant="outlined" size="small">
+              <Link to={"/signup"}>Sign Up</Link>
+            </Button>
       </Toolbar>
       <Toolbar
         component="nav"

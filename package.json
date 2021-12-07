@@ -15,10 +15,13 @@
     "@mui/material": "latest",
     "axios": "^0.24.0",
     "dotenv": "^10.0.0",
+    "formik": "^2.2.9",
     "prop-types": "^15.7.2",
     "react": "latest",
     "react-dom": "latest",
-    "react-scripts": "latest"
+    "react-router-dom": "^6.0.2",
+    "react-scripts": "latest",
+    "yup": "^0.32.11"
   },
   "browserslist": {
     "production": [

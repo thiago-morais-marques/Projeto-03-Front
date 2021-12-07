@@ -72,10 +72,10 @@ const Home = () => {
                 }}
               >
                 <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-                  {{ ...posts[0] }.title}
+                  {mainPost.title}
                 </Typography>
                 <Typography variant="h5" color="inherit" paragraph>
-                  {{ ...posts[0] }.description}
+                  {mainPost.description}
                 </Typography>
                 <Link variant="subtitle1" href="#">
                   Continue lendo…
@@ -91,8 +91,8 @@ const Home = () => {
             paddingBottom: '4.5rem',
           }}
         >
-          {posts.map((post) => {
-            const decodedImage = `data:image/png;base64,${post.imageURL}`;
+          {cardPosts.map((post) => {
+            {/* const decodedImage = `data:image/png;base64,${post.imageURL}`; */}
             return (
               <Grid item xs={12} md={6}>
                 <CardActionArea component="a" href="#">
@@ -111,12 +111,12 @@ const Home = () => {
                         Continue lendo...
                       </Typography>
                     </CardContent>
-                    <CardMedia
+                    {/* <CardMedia
                       component="img"
                       sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
                       image={decodedImage}
                       alt={post.title}
-                    />
+                    /> */}
                   </Card>
                 </CardActionArea>
               </Grid>
