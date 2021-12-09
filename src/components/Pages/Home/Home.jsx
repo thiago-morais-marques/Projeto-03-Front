@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { CssBaseline, Grid, Container } from '@mui/material';
 import Header from '../../Misc/Header';
 import Footer from '../../Misc/Footer';
-import MainPost from './homeComponents/MainPost';
-import CardPost from './homeComponents/CardPost';
+import MainPost from './HomeComponents/MainPost';
+import CardPost from './HomeComponents/CardPost';
 import HeroImage from '../../Misc/HeroImage';
 import { getAllPosts } from '../../../service/api';
 
@@ -15,29 +15,43 @@ const Home = () => {
     setPosts(postsResponse);
   }, []);
 
-  return (
+  const mainPostIndex = Math.floor(Math.random() * posts.length);
+
+  return posts.length > 0 && (
     <div>
       <HeroImage />
       <CssBaseline />
       <Container
         maxWidth="lg"
+        style={{
+          flex: 1,
+        }}
       >
-        <Header
-          logo="Iron Blogger"
-          className="logo"
-        />
-        <MainPost post={{ ...posts[0] }} />
-        <Grid
-          container
-          spacing={4}
+        <Container
+          style={{
+            flex: 1,
+          }}
         >
-          {posts.map((post) => {
-            const decodedImage = `data:image/png;base64,${post.imageURL}`;
-            return (
-              <CardPost key={post.title} post={post} decodedImage={decodedImage} />
-            );
-          })}
-        </Grid>
+          <Header
+            logo="Iron Blogger"
+            className="logo"
+          />
+          <MainPost post={{ ...posts[mainPostIndex] }} />
+          <Grid
+            container
+            spacing={4}
+          >
+            {posts.map((post, i) => {
+              if (i !== mainPostIndex) {
+                const decodedImage = `data:image/png;base64,${post.imageURL}`;
+                return (
+                  <CardPost key={post._id} post={post} decodedImage={decodedImage} />
+                );
+              }
+              return null;
+            })}
+          </Grid>
+        </Container>
         <Footer />
       </Container>
     </div>

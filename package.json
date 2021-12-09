@@ -19,6 +19,8 @@
     "prop-types": "^15.7.2",
     "react": "latest",
     "react-dom": "latest",
+    "react-native": "^0.66.3",
+    "react-router-dom": "^6.0.2",
     "react-scripts": "latest",
     "yup": "^0.32.11"
   },
