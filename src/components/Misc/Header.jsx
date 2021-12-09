@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
 import {
   Toolbar, Button, /* IconButton, */ TextField, Box, Typography, Link,
 } from '@mui/material';
@@ -60,24 +61,28 @@ const Header = (props) => {
             {logo}
           </Link>
         </Typography>
-        <Button
-          variant="outlined"
-          size="small"
-          sx={{
-            ml: 8,
-          }}
-        >
-          Login
-        </Button>
-        <Button
-          variant="outlined"
-          size="small"
-          sx={{
-            ml: 1,
-          }}
-        >
-          SignUp
-        </Button>
+        <Link href="http://localhost:3000/login">
+          <Button
+            variant="outlined"
+            size="small"
+            sx={{
+              ml: 8,
+            }}
+          >
+            Login
+          </Button>
+          </Link>
+        <Link href="http://localhost:3000/register">
+          <Button
+            variant="outlined"
+            size="small"
+            sx={{
+              ml: 1,
+            }}
+          >
+            SignUp
+          </Button>
+        </Link>
       </Toolbar>
       <Toolbar
         component="nav"
