@@ -22,3 +22,8 @@ export const getAllPosts = async () => {
   const response = await api.get('/posts');
   return response.data;
 };
+
+export const getAllPostsByTags = async () => {
+  const response = await api.get('/posts/:id');
+  return response.data;
+};
