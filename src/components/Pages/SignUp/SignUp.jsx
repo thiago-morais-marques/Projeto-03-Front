@@ -40,23 +40,25 @@ const UserSignUp = () => {
       name: '',
       email: '',
       password: '',
+      passwordConfirmation: '',
     },
     validationSchema: loginSchema,
     onSubmit: async (formData) => {
       try {
-        console.log(values.passwordConfirmation);
-        console.log(attach);
-        await register({ ...formData/* , profilePicture: attach */ });
+        await register({
+          name: formData.name,
+          userName: formData.userName,
+          email: formData.email,
+          password: formData.password,
+          profilePicture: attach,
+        });
         const tokenResponse = await login(formData.email, formData.password);
         localStorage.setItem('token', tokenResponse.token);
-        /* loginUser(); */
         navigate('/');
       } catch (error) {
-        setErrors([{ ...errors,
-          userName: error.response.data.error,
-          name: error.response.data.error,
+        console.log(error.response.data.error);
+        setErrors([{
           email: error.response.data.error,
-          password: error.response.data.error,
         }]);
       }
     },
