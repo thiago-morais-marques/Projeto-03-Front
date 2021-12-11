@@ -14,7 +14,7 @@ export const login = async (email, password) => {
 
 export const register = async (formData) => {
   const response = await api.post('/auth/register', {
-    formData,
+    ...formData,
   });
   console.log('Cadastro feito');
   return response.data;
@@ -23,6 +23,12 @@ export const register = async (formData) => {
 export const getAllPosts = async () => {
   const response = await api.get('/posts');
   console.log('Posts retornados');
+  return response.data;
+};
+
+export const searchPosts = async () => {
+  const response = await api.get('/posts/search');
+  console.log('Posts retornados pelo campo de pesquisa');
   return response.data;
 };
 

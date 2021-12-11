@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Toolbar, TextField, Box, Typography, Link,
@@ -6,7 +7,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import sections from '../../assets/global/sections';
 import '../../assets/styles/Logo.css';
-import { getOneUser, login } from '../../service/api';
+import { getOneUser, searchPosts } from '../../service/api';
 import LoginSignUpButtons from './HeaderComponents/LoginSignUpButtons';
 import AvatarIcon from './HeaderComponents/AvatarIcon';
 
@@ -15,17 +16,38 @@ const Header = (props) => {
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+  const [search, setSearch] = useState('');
 
   useEffect(async () => {
     const token = localStorage.getItem('token');
     console.log('token recebido? R: ', token ? 'Sim' : 'Não');
     if (token) {
-      const tokenResponse = await login('xxx@xxx.com', '123456');
-      const userResponse = await getOneUser(tokenResponse.token);
+      const userResponse = await getOneUser(token);
       setUserInfo(userResponse);
       setLoggedIn(true);
     }
   }, []);
+
+  const searchInput = async () => {
+    try {
+      const foundPosts = await searchPosts(search);
+      // Se der algum erro com status DIFERENTE de 401, vai cair no catch abaixo
+
+      setPosts(foundPosts);
+    } catch (error) {
+      // setShow(true);
+    }
+  };
+
+  const handleChange = async (e) => {
+    setSearch(e.target.value);
+  };
+
+  useEffect(() => {
+    searchInput();
+  }, [search]);
+  // Chama a callback quando o componente termina de montar pela primeira vez
+  // OU quando a variavel searchTitle é atualizada
 
   const logout = () => {
     const tokenDelete = localStorage.clear('token');
@@ -61,6 +83,8 @@ const Header = (props) => {
             id="search-bar"
             type="search"
             placeholder="Pesquisar"
+            value={search}
+            onChange={handleChange}
             variant="standard"
             InputLabelProps={{
               shrink: false,
@@ -121,6 +145,7 @@ const Header = (props) => {
 
 Header.propTypes = {
   logo: PropTypes.string.isRequired,
+  setPosts: PropTypes.func.isRequired,
 };
 
 export default Header;
