@@ -16,17 +16,17 @@ const LoginSignUpButtons = () => {
           Login
         </Button>
       </Link>
-      {/* <Link>
-      </Link> */}
-      <Button
-        variant="outlined"
-        size="small"
-        sx={{
-          ml: 1,
-        }}
-      >
-        SignUp
-      </Button>
+      <Link to="/register">
+        <Button
+          variant="outlined"
+          size="small"
+          sx={{
+            ml: 1,
+          }}
+        >
+          SignUp
+        </Button>
+      </Link>
     </div>
   );
 };

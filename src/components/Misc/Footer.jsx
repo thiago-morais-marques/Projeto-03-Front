@@ -97,7 +97,7 @@ const Footer = () => {
                 <Link
                   color="inherit"
                   noWrap
-                  href="/"
+                  href="/register"
                 >
                   Sign Up
                 </Link>
