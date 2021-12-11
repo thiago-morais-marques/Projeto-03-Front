@@ -5,24 +5,23 @@ import {
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import Copyright from './Copyright';
-import sections from './global/sections';
-import linksUrl from './global/links';
+import Copyright from './FooterComponents/Copyright';
+import sections from '../../assets/global/sections';
 
 const Footer = () => {
   return (
-    <Box
-      component="footer"
-      sx={{
-        bgcolor: 'background.paper',
-        py: 1,
-        px: 3,
-        mt: 4.5,
-        mb: 0,
-        position: 'relative',
-      }}
-    >
-      <Container maxWidth="lg">
+    <Container maxWidth="lg">
+      <Box
+        component="footer"
+        sx={{
+          bgcolor: 'background.paper',
+          py: 1,
+          px: 3,
+          mt: 4.5,
+          mb: 0,
+          position: 'relative',
+        }}
+      >
         <Grid container spacing={2}>
           <Grid item xs={4}>
             <Typography
@@ -89,7 +88,7 @@ const Footer = () => {
                 <Link
                   color="inherit"
                   noWrap
-                  href={linksUrl.home}
+                  href="/login"
                 >
                   Login
                 </Link>
@@ -98,7 +97,7 @@ const Footer = () => {
                 <Link
                   color="inherit"
                   noWrap
-                  href={linksUrl.home}
+                  href="/register"
                 >
                   Sign Up
                 </Link>
@@ -152,8 +151,8 @@ const Footer = () => {
           </Grid>
         </Grid>
         <Copyright />
-      </Container>
-    </Box>
+      </Box>
+    </Container>
   );
 };
 

@@ -15,7 +15,7 @@ const CardPost = (props) => {
             <Typography component="h2" variant="h5">
               {post.title}
             </Typography>
-            <Typography variant="subtitle1" color="text.secondary">
+            <Typography variant="subtitle2" color="text.secondary">
               {new Date(post.createdAt).toLocaleDateString('pt-BR')}
             </Typography>
             <Typography variant="subtitle1" paragraph>

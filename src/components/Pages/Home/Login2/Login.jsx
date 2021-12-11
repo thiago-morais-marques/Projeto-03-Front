@@ -33,9 +33,9 @@ const UserLogin = () => {
       password: data.get('password'),
     });
   };
-
   return (
     <TemplatePublic>
+    <h1>Login Page</h1>
       <ThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />

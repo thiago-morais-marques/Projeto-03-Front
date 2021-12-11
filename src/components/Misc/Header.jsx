@@ -1,16 +1,39 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // import { Link } from 'react-router-dom';
 import {
-  Toolbar, Button, /* IconButton, */ TextField, Box, Typography, Link,
+  Toolbar, TextField, Box, Typography, Link,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import linksUrl from './global/links';
-import sections from './global/sections';
-import './styles/Logo.css';
+import sections from '../../assets/global/sections';
+import '../../assets/styles/Logo.css';
+import { getOneUser, login } from '../../service/api';
+import LoginSignUpButtons from './HeaderComponents/LoginSignUpButtons';
+import AvatarIcon from './HeaderComponents/AvatarIcon';
 
 const Header = (props) => {
   const { logo } = props;
+
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
+
+  useEffect(async () => {
+    const token = localStorage.getItem('token');
+    console.log('token recebido? R: ', token ? 'Sim' : 'Não');
+    if (token) {
+      const tokenResponse = await login('xxx@xxx.com', '123456');
+      const userResponse = await getOneUser(tokenResponse.token);
+      setUserInfo(userResponse);
+      setLoggedIn(true);
+    }
+  }, []);
+
+  const logout = () => {
+    const tokenDelete = localStorage.clear('token');
+    setLoggedIn(false);
+    console.log('comando de logout');
+    return tokenDelete;
+  };
 
   return (
     <>
@@ -50,39 +73,23 @@ const Header = (props) => {
           component="h2"
           variant="h5"
           color="inherit"
-          align="center"
           noWrap
-          sx={{ flex: 1 }}
+          sx={{
+            flex: 1,
+            ml: '17%',
+          }}
         >
           <Link
             className="logo-link"
-            href={linksUrl.home}
+            href="/"
           >
             {logo}
           </Link>
         </Typography>
-        <Link href="http://localhost:3000/login">
-          <Button
-            variant="outlined"
-            size="small"
-            sx={{
-              ml: 8,
-            }}
-          >
-            Login
-          </Button>
-          </Link>
-        <Link href="http://localhost:3000/register">
-          <Button
-            variant="outlined"
-            size="small"
-            sx={{
-              ml: 1,
-            }}
-          >
-            SignUp
-          </Button>
-        </Link>
+        { loggedIn
+          ? <AvatarIcon user={{ ...userInfo }} logout={logout} />
+          : <LoginSignUpButtons /> }
+
       </Toolbar>
       <Toolbar
         component="nav"

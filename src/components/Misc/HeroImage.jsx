@@ -1,6 +1,6 @@
 import * as React from 'react';
-import './styles/HeroImage.css';
-import Img from './images/background.jpg';
+import '../../assets/styles/HeroImage.css';
+import Img from '../../assets/images/background.jpg';
 
 const HeroImage = () => (
   <div className="background">

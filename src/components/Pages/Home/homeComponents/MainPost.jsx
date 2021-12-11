@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import {
   Paper, Typography, Grid, Link, Box,
 } from '@mui/material';
-import linksUrl from '../../../Misc/global/links';
 
 const MainPost = (props) => {
   const { post } = props;
-  console.log(post);
 
   const decodedImage = `data:image/png;base64,${post.imageURL}`;
   return (
@@ -49,7 +47,7 @@ const MainPost = (props) => {
             <Typography variant="h5" color="inherit" paragraph>
               {post.description}
             </Typography>
-            <Link variant="subtitle1" href={linksUrl.home}>
+            <Link variant="subtitle1" href="/">
               Continue lendo…
             </Link>
           </Box>

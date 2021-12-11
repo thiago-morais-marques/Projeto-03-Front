@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Typography, Link } from '@mui/material';
-import linksUrl from './global/links';
 
 const Copyright = () => {
   return (
@@ -12,13 +11,13 @@ const Copyright = () => {
       {'© '}
       <Link
         color="inherit"
-        href={linksUrl.home}
+        href="/"
       >
         Iron Blogger
       </Link>
       {', '}
       {new Date().getFullYear()}
-      , todos os direitos reservados.
+      .
     </Typography>
   );
 };
