@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
 import {
   Toolbar, TextField, Box, Typography, Link,
 } from '@mui/material';
@@ -88,6 +89,7 @@ const Header = (props) => {
         { loggedIn
           ? <AvatarIcon user={{ ...userInfo }} logout={logout} />
           : <LoginSignUpButtons /> }
+
       </Toolbar>
       <Toolbar
         component="nav"
