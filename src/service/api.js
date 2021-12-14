@@ -38,3 +38,8 @@ export const getOneUser = async (token) => {
   console.log('Usuário retornado');
   return response.data;
 };
+
+export const getAllPostsByTags = async () => {
+  const response = await api.get('/posts/:id');
+  return response.data;
+};
