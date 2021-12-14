@@ -9,8 +9,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { styled } from '@mui/material/styles';
 import { Form, Col } from 'react-bootstrap';
-import Header from '../../Misc/Header';
-import Footer from '../../Misc/Footer';
+import TemplatePage from '../../Templates/TemplatePage';
 import MuiSnackBar from '../../Misc/Snackbar';
 import { login, register } from '../../../service/api';
 
@@ -56,7 +55,6 @@ const UserSignUp = () => {
         localStorage.setItem('token', tokenResponse.token);
         navigate('/');
       } catch (error) {
-        console.log(error.response.data.error);
         setErrors([{
           email: error.response.data.error,
         }]);
@@ -88,151 +86,154 @@ const UserSignUp = () => {
   return (
     <Container
       maxWidth="lg"
+      sx={{ border: '2px red solid' }}
     >
-      <Header
-        logo="Iron Blogger"
-        className="logo"
-      />
-      <Container
-        component="main"
-        maxWidth="xs"
+      <Grid
+        sx={{ border: '2px blue solid', display: 'flex', flexDirection: 'column' }}
       >
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 5,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign Up
-          </Typography>
-          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-            <Grid container spacing={1}>
-              <Grid item xs={12}>
-                <Form.Group as={Col} md="12" controlId="login-form">
-                  <Form.Label>Nome</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="name"
-                    value={values.name}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.name && !errors.name}
-                    isInvalid={touched.name && errors.name}
-                  />
-                  <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
-                </Form.Group>
-              </Grid>
-              <Grid item xs={12}>
-                <Form.Group as={Col} md="12" controlId="login-form">
-                  <Form.Label>Nome de Usuário</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="userName"
-                    value={values.userName}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.userName && !errors.userName}
-                    isInvalid={touched.userName && errors.userName}
-                  />
-                  <Form.Control.Feedback type="invalid">{errors.userName}</Form.Control.Feedback>
-                </Form.Group>
-              </Grid>
-              <Grid item xs={12}>
-                <Form.Group as={Col} md="12" controlId="login-form">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.email && !errors.email}
-                    isInvalid={touched.email && errors.email}
-                  />
-                  <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
-                </Form.Group>
-              </Grid>
-              <Grid item xs={12}>
-                <Form.Group as={Col} md="12" controlId="login-form">
-                  <Form.Label>Senha</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.password && !errors.password}
-                    isInvalid={touched.password && errors.password}
-                  />
-                  <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
-                </Form.Group>
-              </Grid>
-              <Grid item xs={12}>
-                <Form.Group as={Col} md="12" controlId="login-form">
-                  <Form.Label>Confirmar Senha</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="passwordConfirmation"
-                    value={values.passwordConfirmation}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.passwordConfirmation && !errors.passwordConfirmation}
-                    isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
-                  />
-                  <Form.Control.Feedback type="invalid">{errors.passwordConfirmation}</Form.Control.Feedback>
-                </Form.Group>
-              </Grid>
-              <Grid
-                item
-                xs={12}
-                sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                }}
-              >
-                <label htmlFor="icon-button-file">
-                  <Input
-                    accept="image/*"
-                    id="icon-button-file"
-                    type="file"
-                    name="profilePicture"
-                    onChange={handleChangeFile}
-                    disabled={disabled}
-                  />
-                  <IconButton color="primary" aria-label="upload picture" component="span" disabled={disabled}>
-                    <PhotoCamera />
-                  </IconButton>
-                </label>
-                <Typography>
-                  Selecione uma foto para o perfil
-                </Typography>
-                <MuiSnackBar type="success" msg="Foto anexada com sucesso!" open={open} setOpen={setOpen} />
-              </Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+        <TemplatePage>
+          <Container
+            component="main"
+            maxWidth="xs"
+            sx={{ border: '2px green solid' }}
+          >
+            <CssBaseline />
+            <Box
+              sx={{
+                marginTop: 5,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
             >
-              Sign Up
-            </Button>
-            <Grid item sx={{ display: 'flex' }}>
-              <Link href="/login" variant="body2" sx={{ flex: 1, textAlign: 'end' }}>
-                Já tem uma conta? Faça Login.
-              </Link>
-            </Grid>
-          </Box>
-        </Box>
-      </Container>
-      <Footer />
+              <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+                <LockOutlinedIcon />
+              </Avatar>
+              <Typography component="h1" variant="h5">
+                Sign Up
+              </Typography>
+              <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+                <Grid container spacing={1}>
+                  <Grid item xs={12}>
+                    <Form.Group as={Col} md="12" controlId="login-form">
+                      <Form.Label>Nome Completo</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="name"
+                        value={values.name}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isValid={touched.name && !errors.name}
+                        isInvalid={touched.name && errors.name}
+                      />
+                      <Form.Control.Feedback type="invalid">{errors.name}</Form.Control.Feedback>
+                    </Form.Group>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Form.Group as={Col} md="12" controlId="login-form">
+                      <Form.Label>Nome de Usuário</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="userName"
+                        value={values.userName}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isValid={touched.userName && !errors.userName}
+                        isInvalid={touched.userName && errors.userName}
+                      />
+                      <Form.Control.Feedback type="invalid">{errors.userName}</Form.Control.Feedback>
+                    </Form.Group>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Form.Group as={Col} md="12" controlId="login-form">
+                      <Form.Label>Email</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="email"
+                        value={values.email}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isValid={touched.email && !errors.email}
+                        isInvalid={touched.email && errors.email}
+                      />
+                      <Form.Control.Feedback type="invalid">{errors.email}</Form.Control.Feedback>
+                    </Form.Group>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Form.Group as={Col} md="12" controlId="login-form">
+                      <Form.Label>Senha</Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="password"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isValid={touched.password && !errors.password}
+                        isInvalid={touched.password && errors.password}
+                      />
+                      <Form.Control.Feedback type="invalid">{errors.password}</Form.Control.Feedback>
+                    </Form.Group>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Form.Group as={Col} md="12" controlId="login-form">
+                      <Form.Label>Confirmar Senha</Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="passwordConfirmation"
+                        value={values.passwordConfirmation}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        isValid={touched.passwordConfirmation && !errors.passwordConfirmation}
+                        isInvalid={touched.passwordConfirmation && errors.passwordConfirmation}
+                      />
+                      <Form.Control.Feedback type="invalid">{errors.passwordConfirmation}</Form.Control.Feedback>
+                    </Form.Group>
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <label htmlFor="icon-button-file">
+                      <Input
+                        accept="image/*"
+                        id="icon-button-file"
+                        type="file"
+                        name="profilePicture"
+                        onChange={handleChangeFile}
+                        disabled={disabled}
+                      />
+                      <IconButton color="primary" aria-label="upload picture" component="span" disabled={disabled}>
+                        <PhotoCamera />
+                      </IconButton>
+                    </label>
+                    <Typography>
+                      Selecione uma foto para o perfil
+                    </Typography>
+                    <MuiSnackBar type="success" msg="Foto anexada com sucesso!" open={open} setOpen={setOpen} />
+                  </Grid>
+                </Grid>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                >
+                  Sign Up
+                </Button>
+                <Grid item sx={{ display: 'flex' }}>
+                  <Link href="/login" variant="body2" sx={{ flex: 1, textAlign: 'end' }}>
+                    Já tem uma conta? Faça Login.
+                  </Link>
+                </Grid>
+              </Box>
+            </Box>
+          </Container>
+        </TemplatePage>
+      </Grid>
     </Container>
   );
 };

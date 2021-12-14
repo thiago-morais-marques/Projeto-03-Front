@@ -1,47 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { CssBaseline, Grid, Container } from '@mui/material';
-import Header from '../../Misc/Header';
-import Footer from '../../Misc/Footer';
+import { StoreContext } from '../../../context/store';
+import TemplatePage from '../../Templates/TemplatePage';
 import MainPost from './HomeComponents/MainPost';
-import CardPost from './HomeComponents/CardPost';
+import CardPost from '../../Misc/CardPost';
 import HeroImage from '../../Misc/HeroImage';
-import { getAllPosts } from '../../../service/api';
 
-const Home = () => {
-  const [posts, setPosts] = useState([]);
+const Home = ({ posts }) => {
+  console.log(posts);
+  const { [posts]: [data, setdata] } = useContext(StoreContext);
+  const [searchFilter, setSearchFilter] = useState('');
 
-  useEffect(async () => {
-    const postsResponse = await getAllPosts();
-    setPosts(postsResponse);
-  }, []);
+  const mainPostIndex = Math.floor(Math.random() * data.length);
 
-  const mainPostIndex = Math.floor(Math.random() * posts.length);
-
-  return posts.length > 0 && (
+  return data.length > 0 && (
     <div>
       <HeroImage />
       <CssBaseline />
       <Container
         maxWidth="lg"
         style={{
-          flex: 1,
+          dixplay: 'flex',
         }}
       >
-        <Container
-          style={{
-            flex: 1,
-          }}
+        <TemplatePage
+          posts={data}
+          setPosts={setdata}
+          searchFilter={searchFilter}
+          setSearchFilter={setSearchFilter}
         >
-          <Header
-            logo="Iron Blogger"
-            className="logo"
-          />
-          <MainPost post={{ ...posts[mainPostIndex] }} />
+          <MainPost post={{ ...data[mainPostIndex] }} />
           <Grid
             container
             spacing={4}
+            mb={4}
           >
-            {posts.map((post, i) => {
+            {data.map((post, i) => {
               if (i !== mainPostIndex) {
                 const decodedImage = `data:image/png;base64,${post.imageURL}`;
                 return (
@@ -51,11 +46,14 @@ const Home = () => {
               return null;
             })}
           </Grid>
-        </Container>
-        <Footer />
+        </TemplatePage>
       </Container>
     </div>
   );
+};
+
+Home.propTypes = {
+  posts: PropTypes.string.isRequired,
 };
 
 export default Home;

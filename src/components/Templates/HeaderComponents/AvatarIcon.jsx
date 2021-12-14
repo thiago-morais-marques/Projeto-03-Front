@@ -37,8 +37,7 @@ const AvatarIcon = (props) => {
           color="text.secondary"
           component="p"
           sx={{
-            mr: 0,
-            my: 1.4,
+            ml: '4rem',
           }}
         >
           {user.userName}

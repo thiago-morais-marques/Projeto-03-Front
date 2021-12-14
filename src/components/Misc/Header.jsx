@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Toolbar, TextField, Box, Typography, Link,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import sections from '../../assets/global/sections';
 import '../../assets/styles/Logo.css';
 import { getOneUser, searchPosts } from '../../service/api';
-import LoginSignUpButtons from './HeaderComponents/LoginSignUpButtons';
-import AvatarIcon from './HeaderComponents/AvatarIcon';
+import LoginSignUpButtons from '../Templates/HeaderComponents/LoginSignUpButtons';
+import AvatarIcon from '../Templates/HeaderComponents/AvatarIcon';
+import MuiSnackBar from './Snackbar';
 
 const Header = (props) => {
-  const { logo } = props;
+  const {
+    logo, setPosts, searchFilter, setSearchFilter,
+  } = props;
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState({});
-  const [search, setSearch] = useState('');
+  const [open, setOpen] = useState(false);
 
   useEffect(async () => {
     const token = localStorage.getItem('token');
@@ -28,26 +29,21 @@ const Header = (props) => {
     }
   }, []);
 
-  const searchInput = async () => {
+  useEffect(async () => {
     try {
-      const foundPosts = await searchPosts(search);
-      // Se der algum erro com status DIFERENTE de 401, vai cair no catch abaixo
-
+      if (searchFilter === '') {
+        setSearchFilter('');
+      }
+      const foundPosts = await searchPosts(searchFilter);
+      if (foundPosts.length === 0) {
+        setSearchFilter('');
+        throw new Error();
+      }
       setPosts(foundPosts);
     } catch (error) {
-      // setShow(true);
+      setOpen(true);
     }
-  };
-
-  const handleChange = async (e) => {
-    setSearch(e.target.value);
-  };
-
-  useEffect(() => {
-    searchInput();
-  }, [search]);
-  // Chama a callback quando o componente termina de montar pela primeira vez
-  // OU quando a variavel searchTitle é atualizada
+  }, [searchFilter]);
 
   const logout = () => {
     const tokenDelete = localStorage.clear('token');
@@ -55,6 +51,12 @@ const Header = (props) => {
     console.log('comando de logout');
     return tokenDelete;
   };
+
+  const sections = [
+    { title: 'Finanças', url: '#' },
+    { title: 'Tecnologia', url: '#' },
+    { title: 'Sustentabilidade', url: '#' },
+  ];
 
   return (
     <>
@@ -81,25 +83,29 @@ const Header = (props) => {
           />
           <TextField
             id="search-bar"
+            label="Pesquisar"
             type="search"
-            placeholder="Pesquisar"
-            value={search}
-            onChange={handleChange}
+            // value={search}
             variant="standard"
-            InputLabelProps={{
-              shrink: false,
+            // onChange={handleChange}
+            onKeyPress={(e) => {
+              if (e.key === 'Enter') {
+                console.log('Enter key pressed');
+                setSearchFilter(e.target.value);
+              }
             }}
           />
+          <MuiSnackBar type="error" msg="Posts não encontrados" open={open} setOpen={setOpen} />
         </Box>
         <Typography
           className="logo"
           component="h2"
           variant="h5"
           color="inherit"
+          textAlign="center"
           noWrap
           sx={{
             flex: 1,
-            ml: '17%',
           }}
         >
           <Link
@@ -146,6 +152,8 @@ const Header = (props) => {
 Header.propTypes = {
   logo: PropTypes.string.isRequired,
   setPosts: PropTypes.func.isRequired,
+  searchFilter: PropTypes.string.isRequired,
+  setSearchFilter: PropTypes.func.isRequired,
 };
 
 export default Header;
