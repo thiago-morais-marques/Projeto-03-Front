@@ -8,7 +8,6 @@ import CardPost from '../../Misc/CardPost';
 import HeroImage from '../../Misc/HeroImage';
 
 const Home = ({ posts }) => {
-  console.log(posts);
   const { [posts]: [data, setdata] } = useContext(StoreContext);
   const [searchFilter, setSearchFilter] = useState('');
 
