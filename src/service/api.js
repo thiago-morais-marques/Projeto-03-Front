@@ -26,8 +26,9 @@ export const getAllPosts = async () => {
   return response.data;
 };
 
-export const searchPosts = async () => {
-  const response = await api.get('/posts/search');
+export const searchPosts = async (filter) => {
+  console.log(filter);
+  const response = await api.get(`/posts/search?filter=${filter}`);
   console.log('Posts retornados pelo campo de pesquisa');
   return response.data;
 };
