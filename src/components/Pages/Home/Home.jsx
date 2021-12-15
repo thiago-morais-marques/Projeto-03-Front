@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { CssBaseline, Grid, Container } from '@mui/material';
 import Header from '../../Misc/Header';
 import Footer from '../../Misc/Footer';
-import MainPost from './HomeComponents/MainPost';
-import CardPost from './HomeComponents/CardPost';
+import MainPost from './homeComponents/MainPost';
+import CardPost from './homeComponents/CardPost';
 import HeroImage from '../../Misc/HeroImage';
 import { getAllPosts } from '../../../service/api';
 
