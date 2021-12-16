@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Card, Divider, Box, Typography, Grid,
 } from '@mui/material';
-
 import DeleteAccountButton from './ProfileInfoCardComponents/DeleteAccountButton';
 import EditAccountButton from './ProfileInfoCardComponents/EditAccountButton';
+import FormModal from './ProfileInfoCardComponents/FormModal';
 
-const ProfileInfoCard = (props) => {
-  const { title } = props;
+const ProfileInfoCard = ({ title, userInfo }) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <Card sx={{ height: '100%' }}>
       <Grid
@@ -16,10 +20,10 @@ const ProfileInfoCard = (props) => {
         display="flex"
         alignContent="space-between"
         sx={{
-          height: '100%',
+          height: '100%', flexDirection: 'column',
         }}
       >
-        <Grid>
+        <Grid sx={{ flex: 1 }}>
           <Box
             display="flex"
             item
@@ -33,7 +37,7 @@ const ProfileInfoCard = (props) => {
               {title}
             </Typography>
           </Box>
-          <Box p={2} item container>
+          <Box p={2} item container sx={{ flex: 1 }}>
             <Divider />
             <Grid
               item
@@ -46,7 +50,7 @@ const ProfileInfoCard = (props) => {
                   Nome completo:&nbsp;
                 </Typography>
                 <Typography fontWeight="regular" color="text">
-                  Thiago Morais Marques
+                  {userInfo.name}
                 </Typography>
               </Grid>
               <Grid item container display="flex" pt={1}>
@@ -54,7 +58,7 @@ const ProfileInfoCard = (props) => {
                   Nome de usuário:&nbsp;
                 </Typography>
                 <Typography fontWeight="regular" color="text">
-                  thi.marques
+                  {userInfo.userName}
                 </Typography>
               </Grid>
               <Grid display="flex" pt={1}>
@@ -62,7 +66,7 @@ const ProfileInfoCard = (props) => {
                   Email:&nbsp;
                 </Typography>
                 <Typography fontWeight="regular" color="text">
-                  xxx@xxx.com
+                  {userInfo.email}
                 </Typography>
               </Grid>
             </Grid>
@@ -71,9 +75,10 @@ const ProfileInfoCard = (props) => {
         <Grid
           container
           justifyContent="space-evenly"
-          sx={{ flex: 1, mb: 2 }}
+          sx={{ mb: 2 }}
         >
-          <EditAccountButton item />
+          <EditAccountButton item handleShow={handleShow} />
+          <FormModal show={show} handleClose={handleClose} />
           <DeleteAccountButton item />
         </Grid>
       </Grid>
@@ -84,6 +89,18 @@ const ProfileInfoCard = (props) => {
 // Typechecking props for the ProfileInfoCard
 ProfileInfoCard.propTypes = {
   title: PropTypes.string.isRequired,
+  userInfo: PropTypes.shape({
+    _id: PropTypes.string,
+    userName: PropTypes.string,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    password: PropTypes.string,
+    profilePicture: PropTypes.string,
+    role: PropTypes.string,
+    active: PropTypes.bool,
+    posts: PropTypes.arrayOf(PropTypes.object),
+    comments: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
 };
 
 export default ProfileInfoCard;

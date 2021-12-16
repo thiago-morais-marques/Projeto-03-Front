@@ -8,7 +8,7 @@ const MainPost = (props) => {
   const { post } = props;
 
   const decodedImage = `data:image/png;base64,${post.imageURL}`;
-  return (
+  return decodedImage.length > 0 && (
     <Paper
       sx={{
         position: 'relative',

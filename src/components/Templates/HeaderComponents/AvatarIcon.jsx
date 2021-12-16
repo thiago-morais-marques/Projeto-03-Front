@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   Box, Avatar, Typography, IconButton, Menu, MenuItem, Divider, ListItemIcon, Tooltip,
@@ -6,9 +7,7 @@ import {
 import Logout from '@mui/icons-material/Logout';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 
-const AvatarIcon = (props) => {
-  const { user, logout } = props;
-
+const AvatarIcon = ({ logout, userInfo, decodedImage }) => {
   const [anchor, setAnchor] = useState(null);
 
   const open = Boolean(anchor);
@@ -20,8 +19,6 @@ const AvatarIcon = (props) => {
   const handleClose = () => {
     setAnchor(null);
   };
-
-  const decodedImage = `data:image/png;base64,${user.profilePicture}`;
 
   return (
     <div>
@@ -40,7 +37,7 @@ const AvatarIcon = (props) => {
             ml: '4rem',
           }}
         >
-          {user.userName}
+          {userInfo.userName}
         </Typography>
         <Tooltip title="Configurações de Conta">
           <IconButton onClick={handleClick} size="small" sx={{ mx: 1 }}>
@@ -50,7 +47,7 @@ const AvatarIcon = (props) => {
                 height: 32,
               }}
               src={decodedImage}
-              alt={user.name}
+              alt={userInfo.name}
             />
           </IconButton>
         </Tooltip>
@@ -89,13 +86,18 @@ const AvatarIcon = (props) => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>
-          <Avatar
-            src={decodedImage}
-            alt={user.name}
-          />
-          Minha Conta
-        </MenuItem>
+        <Link
+          to={`/profile/${userInfo._id}`}
+          style={{ textDecoration: 'none', color: 'inherit' }}
+        >
+          <MenuItem>
+            <Avatar
+              src={decodedImage}
+              alt={userInfo.name}
+            />
+            Minha Conta
+          </MenuItem>
+        </Link>
         <Divider />
         <MenuItem>
           <ListItemIcon>
@@ -115,12 +117,20 @@ const AvatarIcon = (props) => {
 };
 
 AvatarIcon.propTypes = {
-  user: PropTypes.shape({
-    userName: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    profilePicture: PropTypes.string,
-  }).isRequired,
   logout: PropTypes.func.isRequired,
+  userInfo: PropTypes.shape({
+    _id: PropTypes.string,
+    userName: PropTypes.string,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    password: PropTypes.string,
+    profilePicture: PropTypes.string,
+    role: PropTypes.string,
+    active: PropTypes.bool,
+    posts: PropTypes.arrayOf(PropTypes.object),
+    comments: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+  decodedImage: PropTypes.string.isRequired,
 };
 
 export default AvatarIcon;

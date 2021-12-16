@@ -28,9 +28,11 @@ const Input = styled('input')({
 
 const UserSignUp = () => {
   const navigate = useNavigate();
+
   const [attach, setAttach] = useState('');
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
+
   const {
     values, touched, errors, handleChange, handleBlur, handleSubmit, setErrors,
   } = useFormik({
@@ -66,12 +68,9 @@ const UserSignUp = () => {
     const binaryString = e.target.result;
     const toBase64 = window.btoa(binaryString);
     setAttach(toBase64);
-    console.log('imagem convertida: ', toBase64);
     setOpen(true);
     setDisabled(true);
   };
-
-  console.log('imagem carregada? R: ', attach ? 'Sim' : 'Não');
 
   const handleChangeFile = (e) => {
     const file = e.target.files[0];
@@ -84,26 +83,28 @@ const UserSignUp = () => {
   };
 
   return (
-    <Container
-      maxWidth="lg"
-      sx={{ border: '2px red solid' }}
-    >
-      <Grid
-        sx={{ border: '2px blue solid', display: 'flex', flexDirection: 'column' }}
-      >
+    <Container maxWidth="lg">
+      <Grid sx={{ display: 'flex', flexDirection: 'column' }}>
         <TemplatePage>
           <Container
             component="main"
-            maxWidth="xs"
-            sx={{ border: '2px green solid' }}
+            maxWidth="lg"
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
           >
             <CssBaseline />
             <Box
+              container
+              item
               sx={{
-                marginTop: 5,
+                marginTop: 2.4,
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                maxWidth: '50%',
               }}
             >
               <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
