@@ -229,7 +229,10 @@ import { Box } from "@mui/system";
 import { Form, Col } from 'react-bootstrap';
 import './PostCreate.css'
 import { useSearchParams } from "react-router-dom";
-
+import { Button, CssBaseline, IconButton, Input } from '@mui/material';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
 
 
 const PostCreated = () => {
@@ -274,11 +277,35 @@ console.log(value);
               onEditorStateChange={setEditorState} />
               </div>
             </div>
-            <BottomNavigation>
-              <Typography component="h1" variant="h5">
-                Publicar
-              </Typography>
-            </BottomNavigation>            
+
+            <Grid className="button-container" >
+              <Button 
+                className="submit"
+                type="submit"
+                fullWidth
+                variant="contained"
+                // sx={{ mt: 0, mb: 2 }}
+                >
+                <h6>Publicar</h6>
+                  {/* <Typography component="h6" variant="h6">
+                    Publicar
+                  </Typography> */}
+              </Button>
+
+              <label htmlFor="icon-button-file">
+                  <Input accept="image/*" id="icon-button-file" type="file" />
+                  <IconButton className="photoCamera" color="primary" aria-label="upload picture" component="span">
+                    <PhotoCamera />
+                  </IconButton>
+              </label>
+
+              {/* <label htmlFor="contained-button-file">
+                <Input accept="image/*" id="contained-button-file" multiple type="file" />
+                  <Button component="h6" variant="contained" component="span">
+                      Uploads
+                  </Button>
+              </label> */}
+            </Grid>
         </Grid>
       <Footer/>
     </Container>

@@ -17,6 +17,7 @@ import img from '../../Misc/images/background.jpg';
 // import { useFormik } from 'formik';
 // import { Form, Col, Button } from 'react-bootstrap';
 // // import ValidationFormLogin from './ValidationFormLogin';
+import PostComment from '../Pages/Template/Comments/PostComment';
 
 // const loginSchema = yup.object().shape({
 //   email: yup.string().required('Required Field').email('Must have email format'),
