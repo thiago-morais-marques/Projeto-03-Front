@@ -11,13 +11,13 @@ import { Container, Box } from '@mui/material';
 import './Post.css';
 import Header from '../../Misc/Header';
 import Footer from '../../Misc/Footer';
-import img from '../../Misc/images/background.jpg';
+// import img from '../../Misc/images/background.jpg';
 // import * as yup from 'yup';
 // import { useNavigate } from 'react-router-dom';
 // import { useFormik } from 'formik';
 // import { Form, Col, Button } from 'react-bootstrap';
 // // import ValidationFormLogin from './ValidationFormLogin';
-import PostComment from '../Pages/Template/Comments/PostComment';
+import PostComment from './Comments/PostComment';
 
 // const loginSchema = yup.object().shape({
 //   email: yup.string().required('Required Field').email('Must have email format'),
@@ -49,11 +49,12 @@ const Post = () => {
                       alignItems: "center",
                       display: "flex",
                     }}>
-                  <img className="post-img" src={img} alt="post" />
+                  {/* <img className="post-img" src={img} alt="post" /> */}
                   {/* </div> */}
                       <p className='text-content'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.</p>
                   </Box>
             </Container>
+            <PostComment />
             <Container maxWidth="lg">
           <Footer />
         </Container>
