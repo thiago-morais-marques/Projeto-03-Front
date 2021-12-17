@@ -1,3 +1,5 @@
+/* eslint-disable semi */
+/* eslint-disable quotes */
 /* eslint-disable react/jsx-closing-bracket-location */
 /* eslint-disable react/jsx-closing-tag-location */
 /* eslint-disable react/jsx-indent-props */
@@ -222,9 +224,9 @@ import React, { useEffect, useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import Footer from "../../../Misc/Footer";
+// import Footer from "../../../Misc/Footer";
 import { BottomNavigation, Container, Grid, Typography } from "@mui/material";
-import Header from "../../../Misc/Header";
+// import Header from "../../../Misc/Header";
 import { Box } from "@mui/system";
 import { Form, Col } from 'react-bootstrap';
 import './PostCreate.css'
@@ -233,82 +235,100 @@ import { Button, CssBaseline, IconButton, Input } from '@mui/material';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
+import TemplatePage from "../../TemplatePage";
+import MainPost from "../../../Pages/Home/homeComponents/MainPost";
 
 
 const PostCreated = () => {
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty());
-  useEffect(() => {
-    console.log(editorState);
-  }, [editorState]);
+    useEffect(() => {
+}, [editorState]);
 
-console.log(editorState);
+
 const [value, setValue] = useState('');
-const handleChange = (e) => {
-  setValue(e.target.value);
-} 
-console.log(value);
- return (
-    <Container maxWidth="lg" sx={{
-      height: '100%',
-    }}>
-      <Header />
-        <Grid sx={{
-          alignItems: 'center',
-          height: '100%',
-        }}>
+  const handleChange = (e) => {
+    setValue(e.target.value);
+}
+  return (
+    <Container maxWidth="lg" sx={{height: '100%'}}>      
+      <TemplatePage>
+        <Grid sx={{alignItems: 'center', height: '100%'}}>
           <div>
-          <Grid style={{ display: 'flex', alignContent: 'center' }}>
-            <Form.Group className="title-container" as={Col} md="12" controlId="login-form">
-              <Form.Label>
-                <h2>Título:</h2>
-              </Form.Label>
-                <Form.Control
+            <Grid style={{ display: 'flex', alignContent: 'center' }}>
+              <Form.Group className="title-container" as={Col} md="12" controlId="login-form">
+                <Form.Label>
+                  <h2>Título:</h2>
+                  </Form.Label>
+                  <Form.Control
                   type="text"
                   value={value}
                   onChange={handleChange}/>
-                  <Form.Control.Feedback></Form.Control.Feedback>
-                </Form.Group>
+                {/* <Form.Control.Feedback></Form.Control.Feedback> */}
+              </Form.Group>
             </Grid>
-              <h5>Sobre o que você gostaria de falar hoje?</h5>
-                <div style={{ marginBottom: '1rem', border: "1px solid black", padding: '2px', minHeight: '400px', marginTop:'20px' }}>
+            <h5>Sobre o que você gostaria de falar hoje?</h5>
+          <div style={{ marginBottom: '1rem', border: "1px solid black", padding: '2px', minHeight: '400px', marginTop: '0px'}}>
             <Editor
               editorState={editorState}
               onEditorStateChange={setEditorState} />
               </div>
             </div>
+          <Grid className="button-container">
+            <Button 
+              className="submit"
+              type="submit"
+              fullWidth
+              variant="contained"
+            // sx={{ mt: 0, mb: 2 }}
+            >
+              <h6>Publicar</h6>
+            {/* <Typography component="h6" variant="h6">
+            Publicar
+            </Typography> */}
+            </Button>
+          <label htmlFor="icon-button-file">
+            <Input accept="image/*" id="icon-button-file" type="file" />
+              <IconButton className="photoCamera" color="primary" aria-label="upload picture" component="span">
+              <PhotoCamera />
+            </IconButton>
+          </label>
+{/* 
 
-            <Grid className="button-container" >
-              <Button 
-                className="submit"
-                type="submit"
-                fullWidth
-                variant="contained"
-                // sx={{ mt: 0, mb: 2 }}
-                >
-                <h6>Publicar</h6>
-                  {/* <Typography component="h6" variant="h6">
-                    Publicar
-                  </Typography> */}
-              </Button>
-
-              <label htmlFor="icon-button-file">
-                  <Input accept="image/*" id="icon-button-file" type="file" />
-                  <IconButton className="photoCamera" color="primary" aria-label="upload picture" component="span">
-                    <PhotoCamera />
-                  </IconButton>
-              </label>
-
-              {/* <label htmlFor="contained-button-file">
-                <Input accept="image/*" id="contained-button-file" multiple type="file" />
-                  <Button component="h6" variant="contained" component="span">
-                      Uploads
-                  </Button>
-              </label> */}
+            <TemplatePage setPosts={setPosts}>
+            <MainPost post={{ ...posts[mainPostIndex] }} />
+            <Grid
+              container
+              spacing={4}
+              mb={4}
+            >
+              {posts.map((post, i) => {
+                if (i !== mainPostIndex) {
+                  const decodedImage = `data:image/png;base64,${post.imageURL}`;
+                  return decodedImage.length > 0 && (
+                    <CardPost key={post._id} post={post} decodedImage={decodedImage} />
+                  );
+                }
+                return null;
+              })}
             </Grid>
+          </TemplatePage> */}
+
+
+
+
+
+
+          {/* <label htmlFor="contained-button-file">
+          <Input accept="image/*" id="contained-button-file" multiple type="file" />
+          <Button component="h6" variant="contained" component="span">
+          Uploads
+          </Button>
+          </label> */}
+          </Grid>
         </Grid>
-      <Footer/>
-    </Container>
+      </TemplatePage>
+  </Container>
   );
 }
 export default PostCreated;

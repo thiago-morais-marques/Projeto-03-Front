@@ -6,6 +6,8 @@ import UserLogin from '../Pages/Login/Login';
 import UserSignUp from '../Pages/SignUp/SignUp';
 import Profile from '../Pages/Profile/Profile';
 // import SearchResults from '../Pages/SearchResults/SearchResults';
+import Post from '../Templates/Posts/Post';
+import PostCreated from '../Templates/Posts/PostCreate/PostCreate';
 
 const App = () => {
   const verifyLoggedUser = () => {

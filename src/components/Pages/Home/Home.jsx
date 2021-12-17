@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline, Grid, Container } from '@mui/material';
-<<<<<<< HEAD
-import Header from '../../Misc/Header';
-import Footer from '../../Misc/Footer';
-import MainPost from './homeComponents/MainPost';
-import CardPost from './homeComponents/CardPost';
-=======
 import { getAllPosts } from '../../../service/api';
 import TemplatePage from '../../Templates/TemplatePage';
-import MainPost from './HomeComponents/MainPost';
+import MainPost from './homeComponents/MainPost';
 import CardPost from '../../Misc/CardPost';
->>>>>>> 42b021ed04fdcd858a258c518a6b4c5e236d5a13
 import HeroImage from '../../Misc/HeroImage';
 
 const Home = () => {
