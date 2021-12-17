@@ -15,7 +15,6 @@ import MuiSnackBar from '../Misc/Snackbar';
 import '../../assets/styles/Logo.css';
 
 const TemplatePage = ({ children, setPosts }) => {
-  // const [posts, setPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
   const [userInfo, setUserInfo] = useState({});
@@ -86,7 +85,6 @@ const TemplatePage = ({ children, setPosts }) => {
         }}
       >
         <Toolbar
-          item
           sx={{
             borderBottom: 1,
             borderColor: 'divider',
