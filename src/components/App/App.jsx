@@ -23,6 +23,13 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<UserLogin loginUser={loginUser} />} />
       <Route path="/register" element={<UserSignUp />} />
+      <Route path="/login" element={<UserLogin />} />
+      <Route path="/posts" element={<Post />} />
+      {/* <Route path="/financas" element={<Finances />} /> */}
+      {/* <Route path="/tecnologia" element={<Tecnology />} /> */}
+      {/* <Route path="/sustentabilidade" element={<Sustainability />} /> */}
+      {/* <Route path="/veiculos" element={<Vehicles />} /> */}
+      <Route path="/createpost" element={<PostCreated />} />
       <Route path="/profile/:id" element={<ProtectedRoute isLogged={isUserLogged} Page={Profile} />} />
       {/* <Route path="/results" element={<SearchResults />} /> */}
     </Routes>

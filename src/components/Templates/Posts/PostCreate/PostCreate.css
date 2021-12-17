@@ -1,0 +1,39 @@
+
+
+.title-container {
+/* background-color: bisque; */
+display: flex !important;
+align-items: center !important;
+margin-bottom: 2rem;
+margin-top: 2.3rem;
+}
+
+h2 {
+    padding-right: 1rem;
+    align-self: center !important;
+    margin: 0;
+}
+
+
+.button-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;  
+    margin-right: 30rem;
+}
+
+.submit {
+    width: 7rem !important;
+    display: flex;
+    justify-content: space-evenly;
+ 
+}
+
+h6 {
+    
+    text-align: center;
+    float: left;
+    width: 5rem;
+    height: .7rem;
+    
+}
