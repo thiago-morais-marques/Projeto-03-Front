@@ -38,7 +38,7 @@ const PostComment = () => {
                   fullWidth
                   variant="contained"
                 >
-                  <h6>Publicar</h6>
+                Publicar
                 </Button>
               </Box>
           </Grid>

@@ -237,6 +237,9 @@ import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import TemplatePage from "../../TemplatePage";
 import MainPost from "../../../Pages/Home/homeComponents/MainPost";
+import CardPost from "../../../Misc/CardPost";
+import { getAllPosts } from "../../../../service/api";
+import MuiSnackBar from "../../../Misc/Snackbar";
 
 
 const PostCreated = () => {
@@ -245,11 +248,40 @@ const PostCreated = () => {
     useEffect(() => {
 }, [editorState]);
 
-
 const [value, setValue] = useState('');
   const handleChange = (e) => {
     setValue(e.target.value);
 }
+
+const [posts, setPosts] = useState([]);
+
+useEffect(async () => {
+  const postsResponse = await getAllPosts();
+  setPosts(postsResponse);  
+}, []);
+
+const mainPostIndex = Math.floor(Math.random() * setPosts.length);
+
+const [attach, setAttach] = useState('');
+  const [open, setOpen] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+
+  // const {handleChange} = useFormik({
+  //   initialValues: {
+  //     text: '',
+  //   },
+  //   validationSchema: loginSchema,
+  //   onSubmit: async (formData) => {
+  //     try {
+  //       await register({name: formData.text});
+  //     } catch (error) {
+  //       setErrors([{
+  //         text: error.response.data.error,
+  //       }]);
+  //     }
+  //   },
+  // });
+
   return (
     <Container maxWidth="lg" sx={{height: '100%'}}>      
       <TemplatePage>
@@ -267,65 +299,52 @@ const [value, setValue] = useState('');
                 {/* <Form.Control.Feedback></Form.Control.Feedback> */}
               </Form.Group>
             </Grid>
-            <h5>Sobre o que você gostaria de falar hoje?</h5>
-          <div style={{ marginBottom: '1rem', border: "1px solid black", padding: '2px', minHeight: '400px', marginTop: '0px'}}>
+            <p>Sobre o que você gostaria de falar hoje?</p>
+          <div style={{ marginBottom: '1rem', border: "1px solid black", padding: '2px', minHeight: '400px', marginTop: '10px'}}>
             <Editor
               editorState={editorState}
               onEditorStateChange={setEditorState} />
               </div>
             </div>
-          <Grid className="button-container">
-            <Button 
-              className="submit"
-              type="submit"
-              fullWidth
-              variant="contained"
-            // sx={{ mt: 0, mb: 2 }}
-            >
-              <h6>Publicar</h6>
-            {/* <Typography component="h6" variant="h6">
-            Publicar
-            </Typography> */}
-            </Button>
-          <label htmlFor="icon-button-file">
-            <Input accept="image/*" id="icon-button-file" type="file" />
-              <IconButton className="photoCamera" color="primary" aria-label="upload picture" component="span">
-              <PhotoCamera />
-            </IconButton>
-          </label>
-{/* 
-
-            <TemplatePage setPosts={setPosts}>
-            <MainPost post={{ ...posts[mainPostIndex] }} />
+          <div className="align-container" >
+            <Grid className="button-container">
             <Grid
-              container
-              spacing={4}
-              mb={4}
-            >
-              {posts.map((post, i) => {
-                if (i !== mainPostIndex) {
-                  const decodedImage = `data:image/png;base64,${post.imageURL}`;
-                  return decodedImage.length > 0 && (
-                    <CardPost key={post._id} post={post} decodedImage={decodedImage} />
-                  );
-                }
-                return null;
-              })}
+              item
+                xs={15}
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-evenly',
+                }}
+              >
+              <Button 
+                  className="submit-containt"
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                // sx={{ mt: 1, mb: 1 }}
+                >
+                  Publicar
+              </Button>
+              <div className="cam-container">                        
+                <label htmlFor="icon-button-file">
+                    <Input
+                      accept="image/*"
+                      id="icon-button-file"
+                      type="file"
+                      name="profilePicture"
+                      // onChange={handleChangeFile}
+                      disabled={disabled}
+                    />
+                  <IconButton className="cam-icon" color="primary" aria-label="upload picture" component="span">
+                    <PhotoCamera />
+                  </IconButton>
+                </label>
+                <MuiSnackBar type="success" msg="Foto anexada com sucesso!" open={open} setOpen={setOpen} />
+                </div>
+              </Grid>            
             </Grid>
-          </TemplatePage> */}
-
-
-
-
-
-
-          {/* <label htmlFor="contained-button-file">
-          <Input accept="image/*" id="contained-button-file" multiple type="file" />
-          <Button component="h6" variant="contained" component="span">
-          Uploads
-          </Button>
-          </label> */}
-          </Grid>
+         </div>
         </Grid>
       </TemplatePage>
   </Container>

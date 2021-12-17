@@ -40,7 +40,7 @@ const Post = () => {
     //   setPost(userResponse);
     // }, []);
 
-  return (
+    return (
       <Container>
          <TemplatePage>
             <Container maxWidth="md">
@@ -53,8 +53,7 @@ const Post = () => {
                     flexDirection: "column",
                     alignItems: "center",
                   }}/>
-                  <div className='img-container'>
-                      
+                  <div className='img-container'>                      
                       <Box sx={{
                           justifyContent: "center",
                           flexDirection: "column",
@@ -62,7 +61,6 @@ const Post = () => {
                           display: "flex",
                       }}>
                       <img className="post-img" src={img} alt="post" />
-
                       <p className='text-content'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
                       orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
                       orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
@@ -80,10 +78,6 @@ const Post = () => {
             <AlignItemsList />
           </Container>
       </TemplatePage>
-
-
-
-
   </Container>
   )
 };
