@@ -9,7 +9,7 @@ const CardPost = (props) => {
 
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
+      <CardActionArea component="a" href={`/posts/${post._id}`}>
         <Card sx={{ display: 'flex' }}>
           <CardContent sx={{ flex: 1 }}>
             <Typography component="h2" variant="h5">
@@ -39,6 +39,7 @@ const CardPost = (props) => {
 
 CardPost.propTypes = {
   post: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     createdAt: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,

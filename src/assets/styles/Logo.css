@@ -7,4 +7,5 @@
     font-family: "custom" !important;
     font-size: 2rem !important;
     text-decoration: none !important;
+    flex: auto;
 }
