@@ -11,7 +11,7 @@ import { Container, Box } from '@mui/material';
 import './Post.css';
 import Header from '../../Misc/Header';
 import Footer from '../../Misc/Footer';
-// import img from '../../Misc/images/background.jpg';
+import img from '../../Misc/images/background.jpg';
 // import * as yup from 'yup';
 // import { useNavigate } from 'react-router-dom';
 // import { useFormik } from 'formik';
@@ -27,13 +27,19 @@ import PostComment from './Comments/PostComment';
 
 
 const Post = () => {
+    // const [post, setPost] = useState([]);
+    // const { postId } = useParams();
+    // useEffect(async () => {
+    //   const userResponse = await getOnePost(postId);
+    //   setPost(userResponse);
+    // }, []);
   return (
       <Container>
         <Container maxWidth="lg">
         <Header />
           </Container>
               <Container maxWidth="md">
-                  <h1 className='title'>TESTE IRONBLOGGER</h1>
+                  <h1 className='title'>Galeria de Posts</h1>
                     <Box sx={{
                     borderBottom: 1,
                     borderColor: 'divider',
@@ -43,22 +49,31 @@ const Post = () => {
                     alignItems: "center",
                     }}/>
                     {/* <div className='img-container'> */}
-                    <Box sx={{
-                      justifyContent: "center",
-                      flexDirection: "column",
-                      alignItems: "center",
-                      display: "flex",
-                    }}>
-                  {/* <img className="post-img" src={img} alt="post" /> */}
-                  {/* </div> */}
-                      <p className='text-content'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.</p>
+                        <Box sx={{
+                          justifyContent: "center",
+                          flexDirection: "column",
+                          alignItems: "center",
+                          display: "flex",
+                        }}>
+                      <img className="post-img" src={img} alt="post" />
+                    {/* </div> */}
+
+                      <p className='text-content'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
+                      orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
+                      orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
+                      orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
+                      orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
+                      orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
+                      orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
+                      orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
+                      orem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a mi purus.
+                      </p>
+
                   </Box>
             </Container>
+            {/* <Editor /> */}
             <PostComment />
-            <Container maxWidth="lg">
-          <Footer />
         </Container>
-      </Container>
   )
 };
 

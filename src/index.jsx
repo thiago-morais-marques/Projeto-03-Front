@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import PostCreated from './components/Pages/Template/PostCreate/PostCreate';
 import PostComment from './components/Pages/Template/Comments/PostComment';
 // import Post from './components/Pages/Template/Post';
+import AlignItemsList from './components/Pages/Template/Comments/PostMui';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,6 +15,7 @@ ReactDOM.render(
       {/* <PostCreated /> */}
       {/* <Post /> */}
       {/* <PostComment /> */}
+      {/* <AlignItemsList /> */}
     </BrowserRouter>
   </React.StrictMode>,
   document.querySelector('#root'),
