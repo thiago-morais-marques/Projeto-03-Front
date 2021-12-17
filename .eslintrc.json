@@ -27,6 +27,7 @@
         "no-underscore-dangle": "off",
         "linebreak-style": "off",
         "jsx-a11y/label-has-associated-control": "off",
-        "react/jsx-props-no-spreading": "off"
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-no-constructed-context-values": "off"
     }
 }
