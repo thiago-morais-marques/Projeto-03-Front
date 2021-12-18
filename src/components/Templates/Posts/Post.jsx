@@ -15,9 +15,13 @@ const Post = () => {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
-  useEffect(async () => {
+  const updatedComments = async () => {
     const userResponse = await getOnePost(id);
     setPost(userResponse);
+  };
+
+  useEffect(async () => {
+    await updatedComments();
     setLoading(false);
   }, []);
 
@@ -59,7 +63,7 @@ const Post = () => {
             </Grid>
             <Card sx={{ display: 'flex', flexDirection: 'column', mb: 4 }}>
               {!loading
-                ? <PostComment post={post} />
+                ? <PostComment post={post} updatedComments={updatedComments} />
                 : <CircularProgress sx={{ alignSelf: 'center' }} /> }
             </Card>
           </Grid>
