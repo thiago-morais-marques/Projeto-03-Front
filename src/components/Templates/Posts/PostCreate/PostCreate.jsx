@@ -1,10 +1,17 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable consistent-return */
+import React, { useState } from 'react';
 import * as yup from 'yup';
+import {
+  EditorState, convertFromRaw, convertToRaw, conver,
+} from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import { stateToHTML } from 'draft-js-export-html';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useFormik } from 'formik';
-import { Editor, EditorState } from 'draft-js';
 import { styled } from '@mui/material/styles';
 import {
-  Container, Button, Grid, Card, TextareaAutosize,
+  Container, Button, Grid, Card, TextareaAutosize, Typography,
 } from '@mui/material';
 import { Form, Col } from 'react-bootstrap';
 import { createOnePost } from '../../../../service/api';
@@ -16,14 +23,20 @@ const Input = styled('input')({
   display: 'none',
 });
 
-const loginSchema = yup.object().shape({
-  userName: yup.string().required('Required field').min(5, 'Mimimum of 5 charracters').max(15, 'Maximum of 15 charracters'),
-  name: yup.string().required('Required field').min(3, 'Mimimum of 3 charracters').max(100, 'Maximum of 150 charracters'),
-  email: yup.string().required('Required Field').email('Invalid format'),
-  password: yup.string().required('Required Field').max(10, 'Maximum of 10 characters'),
-  passwordConfirmation: yup.string().oneOf([yup.ref('password'), null], 'Passwords must match').required('Required Field'),
-  profilePicture: yup.string(),
+const newSchema = yup.object().shape({
+  title: yup.string().required('Required field').min(1, 'Mimimum of one charracter').max(150, 'Maximum of 150 charracters'),
+  description: yup.string().min(10, 'Mimimum of 10 charracter').max(100, 'Maximum of 100 charracters'),
+  text: yup.string().required('Required field'),
+  imageURL: yup.string().required('Required field'),
 });
+
+const htmlOptions = {
+  blockRenderers: {
+    'header-one': (block) => {
+      return <Typography variant="h1">escape(block.getText()</Typography>;
+    },
+  },
+};
 
 const PostCreate = () => {
   const [attach, setAttach] = useState('');
@@ -31,19 +44,10 @@ const PostCreate = () => {
   const [disabled, setDisabled] = useState(false);
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
 
-  const handleReaderLoaded = (e) => {
-    const binaryString = e.target.result;
-    const toBase64 = window.btoa(binaryString);
-    setAttach(toBase64);
-    setOpen(true);
-    setDisabled(true);
-  };
-
   const token = localStorage.getItem('token');
 
   const {
-    values, touched, errors,
-    handleChange, handleBlur, handleSubmit, setErrors,
+    values, touched, errors, handleChange, handleBlur, handleSubmit, setErrors,
   } = useFormik({
     initialValues: {
       title: '',
@@ -51,13 +55,13 @@ const PostCreate = () => {
       text: '',
       imageURL: '',
     },
-    validationSchema: loginSchema,
+    validationSchema: newSchema,
     onSubmit: async (formData) => {
       try {
         await createOnePost({
           title: formData.title,
           description: formData.description,
-          text: formData.text,
+          text: stateToHTML(editorState.getCurrentContent(), htmlOptions),
           imageURL: attach,
         }, token);
       } catch (error) {
@@ -67,6 +71,14 @@ const PostCreate = () => {
       }
     },
   });
+
+  const handleReaderLoaded = (e) => {
+    const binaryString = e.target.result;
+    const toBase64 = window.btoa(binaryString);
+    setAttach(toBase64);
+    setOpen(true);
+    setDisabled(true);
+  };
 
   const handleChangeFile = (e) => {
     const file = e.target.files[0];
@@ -78,14 +90,59 @@ const PostCreate = () => {
     }
   };
 
+  const toolbarOptions = {
+    options: ['inline', 'blockType', 'list', 'link', 'history'],
+    inline: {
+      inDropdown: false,
+      className: undefined,
+      component: undefined,
+      dropdownClassName: undefined,
+      options: ['bold', 'underline', 'superscript'],
+    },
+    blockType: {
+      inDropdown: true,
+      options: ['Normal', 'H1', 'H2', 'H3', 'H4'],
+    },
+    list: {
+      inDropdown: false,
+      options: ['unordered', 'ordered'],
+    },
+    link: {
+      inDropdown: false,
+      defaultTargetOption: '_self',
+      options: ['link', 'unlink'],
+    },
+    history: {
+      inDropdown: false,
+      options: ['undo', 'redo'],
+    },
+  };
+
+  function myBlockRenderer(contentBlock) {
+    const type = contentBlock.getType();
+    if (type === 'header-one') {
+      return {
+        component: Typography,
+        editable: false,
+        props: {
+          variant: 'h1',
+        },
+      };
+    }
+  }
+
+  // JSON.stringify(editorState.getCurrentContent(), false, 2);
+
   return (
     <div>
       <HeroImage />
       <Container maxWidth="lg" sx={{ height: '100%' }}>
         <TemplatePage>
-          <form onSubmit={handleSubmit}>
+          <div>
             <Grid sx={{ alignItems: 'center', height: '100%' }}>
               <Card
+                component="form"
+                onSubmit={handleSubmit}
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
@@ -107,6 +164,7 @@ const PostCreate = () => {
                     </Form.Label>
                     <Form.Control
                       type="text"
+                      name="title"
                       value={values.title}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -128,15 +186,24 @@ const PostCreate = () => {
                   style={{
                     marginBottom: '1rem',
                     border: '1px solid black',
-                    padding: '2px',
-                    minHeight: '400px',
-                    marginTop: '20px',
                   }}
                 >
-                  <Editor
-                    editorState={editorState}
-                    onChange={setEditorState}
-                  />
+                  <div>
+                    <Editor
+                      editorState={editorState}
+                      onEditorStateChange={setEditorState}
+                      wrapperClassName="demo-wrapper"
+                      editorClassName="demo-editor"
+                      toolbar={toolbarOptions}
+                      customBlockRenderFunc={myBlockRenderer}
+                    />
+                  </div>
+
+                  <br />
+                  <br />
+                  <pre>{}</pre>
+                  <pre>{}</pre>
+
                 </div>
                 <Grid sx={{ display: 'flex', justifyContent: 'space-between', mx: 2 }}>
                   <label htmlFor="contained-button-file">
@@ -147,7 +214,6 @@ const PostCreate = () => {
                     <MuiSnackBar type="success" msg="Foto anexada com sucesso!" open={open} setOpen={setOpen} />
                   </label>
                   <Button
-                    className="submit"
                     type="submit"
                     variant="contained"
                   >
@@ -156,7 +222,7 @@ const PostCreate = () => {
                 </Grid>
               </Card>
             </Grid>
-          </form>
+          </div>
         </TemplatePage>
       </Container>
     </div>
