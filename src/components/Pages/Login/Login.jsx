@@ -51,8 +51,6 @@ const UserLogin = ({ loginUser }) => {
       >
         <TemplatePage>
           <Container
-            item
-            container
             maxWidth="xl"
             component="main"
             sx={{

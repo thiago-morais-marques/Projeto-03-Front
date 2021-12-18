@@ -47,7 +47,7 @@ const MainPost = (props) => {
             <Typography variant="h5" color="inherit" paragraph>
               {post.description}
             </Typography>
-            <Link variant="subtitle1" href="/">
+            <Link variant="subtitle1" href={`/posts/${post._id}`}>
               Continue lendo…
             </Link>
           </Box>
@@ -59,6 +59,7 @@ const MainPost = (props) => {
 
 MainPost.propTypes = {
   post: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     imageURL: PropTypes.string.isRequired,

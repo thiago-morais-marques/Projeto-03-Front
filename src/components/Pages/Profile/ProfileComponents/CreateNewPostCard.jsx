@@ -12,6 +12,7 @@ const CreateNewPostCard = () => {
       <Button
         variant="text"
         fullWidth
+        href="/createpost"
       >
         <Grid
           flex="auto"
