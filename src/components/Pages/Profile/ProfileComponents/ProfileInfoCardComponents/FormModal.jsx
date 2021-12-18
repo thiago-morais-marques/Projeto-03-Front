@@ -29,7 +29,6 @@ const Input = styled('input')({
 const token = localStorage.getItem('token');
 
 const FormModal = ({ show, handleClose }) => {
-  // const [userInfo, setUserInfo] = useState({});
   const [attach, setAttach] = useState('');
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);

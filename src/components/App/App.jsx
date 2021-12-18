@@ -6,6 +6,7 @@ import UserLogin from '../Pages/Login/Login';
 import UserSignUp from '../Pages/SignUp/SignUp';
 import Profile from '../Pages/Profile/Profile';
 import Post from '../Templates/Posts/Post';
+import PostCreate from '../Templates/Posts/PostCreate/PostCreate';
 
 const App = () => {
   const verifyLoggedUser = () => {
@@ -23,9 +24,9 @@ const App = () => {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<UserLogin loginUser={loginUser} />} />
       <Route path="/register" element={<UserSignUp />} />
-      <Route path="/posts/:id" element={<Post />} />
-      {/* <Route path="/createpost" element={<PostCreated />} /> */}
       <Route path="/profile/:id" element={<ProtectedRoute isLogged={isUserLogged} Page={Profile} />} />
+      <Route path="/posts/:id" element={<Post />} />
+      <Route path="/createpost" element={<ProtectedRoute isLogged={isUserLogged} Page={PostCreate} />} />
     </Routes>
   );
 };

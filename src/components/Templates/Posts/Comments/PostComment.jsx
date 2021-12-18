@@ -6,11 +6,11 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {
   Portal, Button, Box, Divider, List, Avatar, ListItemText, Typography, ListItemAvatar, ListItem,
 } from '@mui/material';
-import './PostComment.css';
+import '../../../../assets/styles/PostComment.css';
 
 const PostComment = ({ post }) => {
   const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const container = useRef(null);
 
   const handleClick = () => {
@@ -62,7 +62,7 @@ const PostComment = ({ post }) => {
                   )
                   : (
                     <ListItemAvatar>
-                      <Avatar alt={comment.owner.name} src={''} />
+                      <Avatar alt={comment.owner.name} src="" />
                     </ListItemAvatar>
                   )}
                 <ListItemText

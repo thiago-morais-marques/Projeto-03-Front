@@ -99,12 +99,14 @@ const AvatarIcon = ({ logout, userInfo, decodedImage }) => {
           </MenuItem>
         </Link>
         <Divider />
-        <MenuItem>
-          <ListItemIcon>
-            <PostAddIcon fontSize="small" />
-          </ListItemIcon>
-          Criar um novo post
-        </MenuItem>
+        <Link to="/createpost" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <MenuItem href="/createpost">
+            <ListItemIcon>
+              <PostAddIcon fontSize="small" />
+            </ListItemIcon>
+            Criar um novo post
+          </MenuItem>
+        </Link>
         <MenuItem onClick={logout}>
           <ListItemIcon>
             <Logout fontSize="small" />

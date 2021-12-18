@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import {
-  Container, Card, Divider, Grid, CircularProgress
+  Container, Card, Divider, Grid, CircularProgress,
 } from '@mui/material';
 import { getOnePost } from '../../../service/api';
 import '../../../assets/styles/Post.css';
@@ -15,16 +15,11 @@ const Post = () => {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
-  console.log(id);
-
   useEffect(async () => {
     const userResponse = await getOnePost(id);
-    console.log(userResponse);
     setPost(userResponse);
     setLoading(false);
   }, []);
-
-  console.log(post);
 
   const decodedImage = `data:image/png;base64,${post.imageURL}`;
 
