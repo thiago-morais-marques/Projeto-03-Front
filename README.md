@@ -2,7 +2,7 @@
 
 ## Ideia do projeto:
 O projeto escolhido foi a criação de um Blog com temas de Tecnologia, Finanças e Sustentabilidade.
-O projeto consiste em ações do usuário para Criação, Edição, Atualização e Deleção de posts e comentários.
+O projeto consiste em ações do usuário para criação, edição, atualização e deleção de posts e comentários.
 O usuário terá acesso a base com login e senha criado pelo mesmo.
 
 ## Funcionalidades
