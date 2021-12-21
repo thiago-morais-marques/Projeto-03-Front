@@ -10,12 +10,12 @@ O usuário poderá criar um cadastro, fazer login e interagir com outros usuári
 O usuário poderá ser silenciado em casos de comportamento não adequado na comunidade.
 O usuário poderá interagir em todas as publicações disponíveis desde que logado na platafoma.
 
-## Resposável técnico
-João Pedro
-Linkedin: https://www.linkedin.com/in/joaopedro-teo/
+## Responsáveis
+João Pedro - 
+[Linkedin] (https://www.linkedin.com/in/joaopedro-teo/)
 
-Thiago Marques: 
-Linkedin: https://www.linkedin.com/in/thiago-morais-marques/
+Thiago Marques - 
+[Linkedin] (https://www.linkedin.com/in/thiago-morais-marques/)
 
 
 ## Apresentação do projeto
