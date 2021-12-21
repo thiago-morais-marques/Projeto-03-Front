@@ -20,4 +20,4 @@ Link para o aplicativo: https://iron-blogger.netlify.app/
 
 * Thiago Morais Marques: [LinkedIn](https://www.linkedin.com/in/thiago-morais-marques). 
 
-* João Pedro: [LinkedIn] (https://www.linkedin.com/in/joaopedro-teo/)
+* João Pedro: [LinkedIn](https://www.linkedin.com/in/joaopedro-teo/)
