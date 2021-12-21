@@ -2,7 +2,7 @@
 
 ## Ideia do projeto:
 
-Projeto de conclusão de curso do bootcamp da Ironhack, onde o escopo foi a criação de um Blog de Tercnologia, Finanças e Sustentabilidade.
+Projeto de conclusão de curso do bootcamp de desenvolvimento web full stack da Ironhack, onde o escopo foi a criação de um Blog de Tecnologia, Finanças e Sustentabilidade.
 
 ## Funcionalidades
 
