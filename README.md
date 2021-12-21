@@ -1,4 +1,5 @@
 # Project Iron Blogger
+![alt text](https://github.com/THGMMX/Projeto-03-Front/blob/main/public/Logo.png)
 
 ## Ideia do projeto:
 
