@@ -10,11 +10,11 @@ Visamos implementar ações de criação, edição e deleção de posts e coment
 
 ## Projeto
 
-Apresentação em slides: [Link](https://docs.google.com/presentation/d/e/2PACX-1vTPr572gwdh_3VZrYhmjIZ3W_5mg3VDducTdynPFb-GOR5JzP7yKQ7NJHcR7dzouyIq7qdBVIbQdkKT/pub?start=false&loop=false&delayms=3000)
+* Apresentação em slides: [Link](https://docs.google.com/presentation/d/e/2PACX-1vTPr572gwdh_3VZrYhmjIZ3W_5mg3VDducTdynPFb-GOR5JzP7yKQ7NJHcR7dzouyIq7qdBVIbQdkKT/pub?start=false&loop=false&delayms=3000)
 
-Repositório back-end: [Link](https://github.com/THGMMX/Projeto-03)
+* Repositório back-end: [Link](https://github.com/THGMMX/Projeto-03)
 
-App: [Link](https://iron-blogger.netlify.app/)
+* App: [Link](https://iron-blogger.netlify.app/)
 
 ## Autores
 
