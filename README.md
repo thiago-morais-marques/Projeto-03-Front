@@ -11,11 +11,11 @@ O usuário poderá ser silenciado em casos de comportamento não adequado na com
 O usuário poderá interagir em todas as publicações disponíveis desde que logado na platafoma.
 
 ## Responsáveis
-João Pedro - 
-[Linkedin] (https://www.linkedin.com/in/joaopedro-teo/)
+João Pedro
+[LinkedIn] (https://www.linkedin.com/in/joaopedro-teo/)
 
-Thiago Marques - 
-[Linkedin] (https://www.linkedin.com/in/thiago-morais-marques/)
+Thiago Marques
+[LinkedIn] (https://www.linkedin.com/in/thiago-morais-marques/)
 
 
 ## Apresentação do projeto
