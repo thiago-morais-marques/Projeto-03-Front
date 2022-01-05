@@ -11,8 +11,8 @@ Visamos implementar ações de criação, edição e deleção de posts e coment
 ## Instalação
 
 Dependencies:
-- node >= 8
-- mongod 4.x
+- Node >= 16
+- MongoDB 4.x
  
 ```sh
 $ npm install
