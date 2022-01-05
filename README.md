@@ -10,7 +10,8 @@ Visamos implementar ações de criação, edição e deleção de posts e coment
 
 ## Instalação
 
-Dependencies:
+Dependências:
+
 - Node >= 16
 - MongoDB 4.x
  
