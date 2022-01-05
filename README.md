@@ -19,6 +19,17 @@ Dependências:
 $ npm install
 ```
 
+## Páginas
+ 
+| Página      | URL          | Descrição        |
+| ----------- | ------------ | ---------------- |
+| HOME        | /            | homepage         |
+| SIGNUP      | /register    | signup page      |
+| LOGIN       | /login       | login page       |
+| POSTS       | /posts/:id   | posts pages      |
+| PROFILE     | /profile/:id | profile page     |
+| CREATE POST | /createpost  | create post page |
+
 ## Links do Projeto
 
 * Apresentação em slides: [Link](https://docs.google.com/presentation/d/e/2PACX-1vTPr572gwdh_3VZrYhmjIZ3W_5mg3VDducTdynPFb-GOR5JzP7yKQ7NJHcR7dzouyIq7qdBVIbQdkKT/pub?start=false&loop=false&delayms=3000)
